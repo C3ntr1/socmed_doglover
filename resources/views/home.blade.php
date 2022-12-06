@@ -49,4 +49,26 @@
         </div>
     </div>
     <!-- ***** Most Popular End ***** -->
-@endsection
+
+    <div class="gaming-library" id="yourLikes">
+        <div class="col-lg-12">
+            <div class="heading-section">
+                <h4><em>Your Liked</em> Library</h4>
+            </div>
+            @foreach ($dogsArray as $dog)
+            <div class="item">
+                <ul>
+                    <li><img src="{{ $dog['image_src']  }}" alt="" class="templatemo-item"></li>
+                    <li>
+                        <h4 class="text-capitalize">{{ $dog['name'] }}</h4>
+                    </li>
+                    <li>
+                        <h4><i class="fa fa-star" style="color:#e75e8d;"></i>{{ $dog['likes'] }}</h4>
+                    </li>
+                </ul>
+            </div>
+            @endforeach
+
+        </div>
+    </div>
+    @endsection

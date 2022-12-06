@@ -40,7 +40,7 @@
 
                 <div class="col-lg-12">
                     <div class="main-button">
-                        <a href="browse.html">See Ranking List</a>
+                        <a href="{{ route('dogs.index', 'showAll=true') }}">Show All Dogs</a>
                     </div>
                 </div>
             </div>

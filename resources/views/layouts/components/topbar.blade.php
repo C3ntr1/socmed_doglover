@@ -18,11 +18,11 @@
                     <!-- ***** Search End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="browse.html">Ranking</a></li>
-                        <li><a href="details.html">My Likes</a></li>
+                        <li><a href="{{ route('home') }}" class="{{ Route::current()->getName() == 'home' ? 'active' : '' }}">Home</a></li>
+                        <li><a href="{{ route('dogs.index') }}" class="{{ Route::current()->getName() == 'dogs.index' ? 'active' : '' }}">Dogs</a></li>
+                        <li><a href="{{ route('home', '#yourLikes') }}" >My Likes</a></li>
                         <li><a href="details.html">Others</a></li>
-                        <li><a href="profile.html">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                        <li><a href="profile.html">Profile <img src="{{ asset('asset/templatemo_579_cyborg_gaming/assets/images/profile-header.jpg')}}" alt=""></a></li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>

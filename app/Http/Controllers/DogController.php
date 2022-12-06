@@ -24,11 +24,15 @@ class DogController extends Controller
     public function index(Request $request)
     {
         $count = $request->count ?: 10;
-
+        // return $request;
         $dogsArray = [];
 
         $dogs = json_decode($this->dogService->getRequest('breeds/list/all'), true)['message'];
-        $dogs = array_slice($dogs, 0, $count);
+        if (!$request->showAll) {
+            $dogs = array_slice($dogs, 0, $count);
+        }
+
+
         $dogsArray = [];
         foreach ($dogs as $key => $value) {
 
