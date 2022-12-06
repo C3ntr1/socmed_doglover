@@ -21,6 +21,19 @@
     <link rel="stylesheet" href="{{ asset('asset/templatemo_579_cyborg_gaming/assets/css/owl.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/templatemo_579_cyborg_gaming/assets/css/animate.css') }}">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <style>
+        .item {
+        transition: transform .2s; /* Animation */
+        margin: 0 auto;
+        }
+
+        .item:hover {
+        transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+    </style>
+
+    @yield('page-style')
 </head>
 
 <body>
@@ -64,6 +77,8 @@
   <script src="{{ asset('asset/templatemo_579_cyborg_gaming/assets/js/tabs.js') }}"></script>
   <script src="{{ asset('asset/templatemo_579_cyborg_gaming/assets/js/popup.js') }}"></script>
   <script src="{{ asset('asset/templatemo_579_cyborg_gaming/assets/js/custom.js') }}"></script>
+
+  @yield('page-script')
 
 </body>
 

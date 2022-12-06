@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('dogs', 'App\Http\Controllers\DogController');
+Route::resource('votes', 'App\Http\Controllers\VoteController');

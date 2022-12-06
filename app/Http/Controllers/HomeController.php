@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vote;
 use App\Services\DogService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -25,22 +27,39 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $dogs = json_decode($this->dogService->getRequest('breeds/list/all'), true)['message'];
-        $dogs = array_slice($dogs, 0 ,10);
+        $votesArray = DB::table('votes')
+            ->select('dog_name', DB::raw('count(*) as likes'))
+            ->groupBy('dog_name')
+            ->get();
 
         $dogsArray = [];
 
-        foreach ($dogs as $key => $value) {
+        if ($votesArray->count() != 0) {
+            foreach ($votesArray as $item) {
+                $image_src = json_decode($this->dogService->getRequest('breed/' . $item->dog_name . '/images/random'), true)['message'];
 
-            $image_src = json_decode($this->dogService->getRequest('breed/'. $key .'/images/random'), true)['message'];
+                $dogsArray[] = [
+                    'name' => $item->dog_name,
+                    'image_src' => $image_src,
+                    'likes' => $item->likes,
+                ];
+            }
+        } else {
+            $dogs = json_decode($this->dogService->getRequest('breeds/list/all'), true)['message'];
+            $dogs = array_slice($dogs, 0, 10);
 
-            $dogsArray[] = [
-                'name' => $key,
-                'image_src' => $image_src
-            ];
+            foreach ($dogs as $key => $value) {
+
+                $image_src = json_decode($this->dogService->getRequest('breed/' . $key . '/images/random'), true)['message'];
+
+                $dogsArray[] = [
+                    'name' => $key,
+                    'image_src' => $image_src,
+                    'likes' => 0,
+                ];
+            }
         }
 
-        // return $dogsArray;
         return view('home', compact('dogsArray'));
     }
 }
