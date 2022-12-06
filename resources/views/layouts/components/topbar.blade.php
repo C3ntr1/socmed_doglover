@@ -9,19 +9,19 @@
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Search End ***** -->
-                    <div class="search-input">
+                    {{-- <div class="search-input">
                     <form id="search" action="#">
                         <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
                         <i class="fa fa-search"></i>
                     </form>
-                    </div>
+                    </div> --}}
                     <!-- ***** Search End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="{{ route('home') }}" class="{{ Route::current()->getName() == 'home' ? 'active' : '' }}">Home</a></li>
                         <li><a href="{{ route('dogs.index') }}" class="{{ Route::current()->getName() == 'dogs.index' ? 'active' : '' }}">Dogs</a></li>
                         <li><a href="{{ route('home', '#yourLikes') }}" >My Likes</a></li>
-                        <li><a href="details.html">Others</a></li>
+                        <li><a href="{{ route('users.index') }}">Others</a></li>
                         <li><a href="{{ route('users.show', auth()->user()->id) }}">Profile <img src="{{ asset('asset/templatemo_579_cyborg_gaming/assets/images/profile-header.jpg')}}" alt=""></a></li>
                     </ul>
                     <a class='menu-trigger'>

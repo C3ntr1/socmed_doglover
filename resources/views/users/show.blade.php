@@ -11,10 +11,14 @@
                     </div>
                     <div class="col-lg-4 align-self-center">
                         <div class="main-info header-text">
-                            <h4>{{ $user->name }}
-                                <a href="{{ route('users.edit', $user->id) }}">
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                            <h4>
+                                {{ $user->name }}
+                                @if ($user->id == auth()->user()->id)
+                                    <a href="{{ route('users.edit', $user->id) }}">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                @endif
+
                             </h4>
                             <p>A man of culture.</p>
                             <div class="main-border-button">
@@ -38,7 +42,15 @@
     <div class="gaming-library" id="yourLikes">
         <div class="col-lg-12">
             <div class="heading-section">
-                <h4><em>Your Liked</em> Library</h4>
+                <h4>
+                    @if ($user->id == auth()->user()->id)
+                        <em>Your Liked</em>
+                    @else
+                        <em>User's Liked</em>
+                    @endif
+
+                    Library
+                </h4>
             </div>
             @foreach ($votesUserArray as $dog)
                 <div class="item">
