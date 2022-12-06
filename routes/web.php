@@ -23,3 +23,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('dogs', 'App\Http\Controllers\DogController');
 Route::resource('votes', 'App\Http\Controllers\VoteController');
+Route::resource('users', 'App\Http\Controllers\UserController');

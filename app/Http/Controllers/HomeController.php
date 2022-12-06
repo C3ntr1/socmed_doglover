@@ -60,6 +60,26 @@ class HomeController extends Controller
             }
         }
 
-        return view('home', compact('dogsArray'));
+        $votesUserArray = [];
+
+        $votesUserData= DB::table('votes')
+            ->where('user_id', auth()->user()->id)
+            ->select('dog_name')
+            ->groupBy('dog_name')
+            ->get();
+
+            foreach ($votesUserData as $item) {
+                $image_src = json_decode($this->dogService->getRequest('breed/' . $item->dog_name . '/images/random'), true)['message'];
+
+                $vouteCountLikes = Vote::where('dog_name', $item->dog_name)->count();
+
+                $votesUserArray[] =[
+                    'name' => $item->dog_name,
+                    'image_src' => $image_src,
+                    'likes' => $vouteCountLikes
+                ];
+            }
+
+        return view('home', compact('dogsArray', 'votesUserArray'));
     }
 }

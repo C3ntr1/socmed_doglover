@@ -55,7 +55,7 @@
             <div class="heading-section">
                 <h4><em>Your Liked</em> Library</h4>
             </div>
-            @foreach ($dogsArray as $dog)
+            @foreach ($votesUserArray as $dog)
             <div class="item">
                 <ul>
                     <li><img src="{{ $dog['image_src']  }}" alt="" class="templatemo-item"></li>
